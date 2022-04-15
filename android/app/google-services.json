@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "738251545238",
+    "project_id": "online-store-arvan903",
+    "storage_bucket": "online-store-arvan903.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738251545238:android:9644e4c24d36319e5b80b7",
+        "android_client_info": {
+          "package_name": "com.example.online_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738251545238-92sbguljh6bcredbgioijfhd19rh42je.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvTdjl9bdxnAhSgUeHjqX6IwDMd2hHofo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738251545238-92sbguljh6bcredbgioijfhd19rh42je.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
