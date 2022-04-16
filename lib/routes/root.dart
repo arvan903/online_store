@@ -18,7 +18,7 @@ class root extends StatelessWidget {
             body: Center(
               child: Text(
                 'Firebase is not connected',
-                style: Consts.textStyleOne,
+                style: Constans.textStyleOne,
               ),
             ),
           );
