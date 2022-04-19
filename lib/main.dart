@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       // with is code all the font changes
       theme: ThemeData(
           textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
-      home: root(),
+      home: Root(),
     );
   }
 }

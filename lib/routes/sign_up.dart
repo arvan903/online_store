@@ -28,7 +28,7 @@ class _SingUPState extends State<SingUP> {
     );
   }
 
-  Future<String?> signInMethod() async {
+  Future<String?> signUpMethod() async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: takeEmail, password: takePassword);
@@ -45,11 +45,11 @@ class _SingUPState extends State<SingUP> {
     }
   }
 
-  void signIn() async {
+  void signUp() async {
     setState(() {
       isLoading = true;
     });
-    String? result = await signInMethod();
+    String? result = await signUpMethod();
     if (result != 'ok') {
       advanceAlertDialog(result!);
       setState(() {
@@ -105,7 +105,7 @@ class _SingUPState extends State<SingUP> {
                   text: 'Create Account',
                   loading: isLoading,
                   onTap: () {
-                    signIn();
+                    signUp();
                   },
                   mode: false,
                 )

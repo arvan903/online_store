@@ -5,8 +5,8 @@ import 'package:online_store/routes/home.dart';
 import 'package:online_store/routes/login.dart';
 import 'const.dart';
 
-class root extends StatelessWidget {
-  root({Key? key}) : super(key: key);
+class Root extends StatelessWidget {
+  Root({Key? key}) : super(key: key);
   final Future<FirebaseApp> firebaseTest = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
