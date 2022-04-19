@@ -36,9 +36,13 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   CustomInput(
                     hintText: 'Enter Your Email ...',
+                    onChanged: (String) {},
+                    checkPassword: false,
                   ),
                   CustomInput(
                     hintText: 'Enter Your Password ...',
+                    onChanged: (String) {},
+                    checkPassword: true,
                   ),
                   CustomButton(
                     text: 'Login',

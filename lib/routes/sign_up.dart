@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_input.dart';
 import 'const.dart';
+import 'login.dart';
 
 class SingUP extends StatefulWidget {
   SingUP({Key? key}) : super(key: key);
@@ -12,7 +14,60 @@ class SingUP extends StatefulWidget {
 }
 
 class _SingUPState extends State<SingUP> {
+  Future<void> advanceAlertDialog(String message) {
+    return Get.defaultDialog(
+      title: 'Invalid Input',
+      content: Text(message),
+      actions: [
+        ElevatedButton(
+          onPressed: () => Get.back(),
+          child: Text('OK !'),
+        )
+      ],
+      contentPadding: EdgeInsets.all(15.0),
+    );
+  }
+
+  Future<String?> signInMethod() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: takeEmail, password: takePassword);
+      return 'ok';
+    } on FirebaseAuthException catch (error) {
+      if (error.code == 'weak-password') {
+        return 'the password is too week';
+      } else if (error.code == 'email-already-in-use') {
+        return 'The account with this email is already exist !';
+      }
+      return error.message;
+    } catch (error) {
+      return error.toString();
+    }
+  }
+
+  void signIn() async {
+    setState(() {
+      isLoading = true;
+    });
+    String? result = await signInMethod();
+    if (result != 'ok') {
+      advanceAlertDialog(result!);
+      setState(() {
+        isLoading = false;
+      });
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+      Get.to(LoginPage());
+      Get.snackbar('Successful', 'Account Created !',
+          backgroundColor: Colors.greenAccent, icon: Icon(Icons.check_circle));
+    }
+  }
+
   bool isLoading = false;
+  String takeEmail = '';
+  String takePassword = '';
 
   @override
   Widget build(BuildContext context) {
@@ -34,28 +89,23 @@ class _SingUPState extends State<SingUP> {
               children: [
                 CustomInput(
                   hintText: 'Enter Your Email ...',
+                  onChanged: (value) {
+                    takeEmail = value;
+                  },
+                  checkPassword: false,
                 ),
                 CustomInput(
                   hintText: 'Enter Your Password ...',
+                  onChanged: (value) {
+                    takePassword = value;
+                  },
+                  checkPassword: true,
                 ),
                 CustomButton(
                   text: 'Create Account',
                   loading: isLoading,
                   onTap: () {
-                    setState(() {
-                      isLoading = true;
-                    });
-                    // Get.defaultDialog(
-                    //   title: 'Invalid Input',
-                    //   content: Text('Please Enter Email and password'),
-                    //   actions: [
-                    //     ElevatedButton(
-                    //       onPressed: () => Get.back(),
-                    //       child: Text('OK !'),
-                    //     )
-                    //   ],
-                    //   contentPadding: EdgeInsets.all(15.0),
-                    // );
+                    signIn();
                   },
                   mode: false,
                 )

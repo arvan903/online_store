@@ -4,14 +4,14 @@ class CustomInput extends StatelessWidget {
   final String hintText;
   //by adding (String) the input is String now
   final Function(String) onChanged;
-  final Function(String) onSubmit;
+  final bool checkPassword;
 
-  const CustomInput(
-      {Key? key,
-      required this.hintText,
-      required this.onChanged,
-      required this.onSubmit})
-      : super(key: key);
+  const CustomInput({
+    Key? key,
+    required this.hintText,
+    required this.onChanged,
+    required this.checkPassword,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,8 @@ class CustomInput extends StatelessWidget {
         ),
       ),
       child: TextField(
+        obscureText: checkPassword,
         onChanged: onChanged,
-        onSubmitted: onSubmit,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: hintText,
