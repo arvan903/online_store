@@ -11,7 +11,10 @@ class MainHome extends StatelessWidget {
       child: Stack(
         children: [
           Center(child: Text('HomePage')),
-          CAB(),
+          CAB(
+            number: '0',
+            title: 'Home',
+          ),
         ],
       ),
     );
